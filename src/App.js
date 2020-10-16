@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from 'react-router-dom';
+import Order from './components/Order/Order';
+import { makeStyles } from "@material-ui/styles";
+import GoodsContainer from "./components/Goods/GoodsContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+import BasketContainer from "./components/Basket/BasketContainer";
+
+const useStyles = makeStyles({
+  appContent: {
+    paddingTop: "20px",
+    paddingLeft: "40px",
+    paddingRight: "40px",
+  }
+});
 
 function App() {
+
+  const classes = useStyles();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <HeaderContainer/>
+      <div className={classes.appContent}>
+        <Switch>
+          <Route exact path='/' render={(props) => <GoodsContainer {...props} />} />
+          <Route path='/basket' render={(props) => <BasketContainer {...props} />} />
+          <Route path='/order' render={(props) => <Order {...props} />} />
+          <Route path='*' render={() => <div>404 Not Found</div>} />
+        </Switch>
+      </div>
+    </React.Fragment>
   );
 }
 
