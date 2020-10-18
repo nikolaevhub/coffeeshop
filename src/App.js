@@ -1,35 +1,32 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import Order from './components/Order/Order';
-import { makeStyles } from "@material-ui/styles";
-import GoodsContainer from "./components/Goods/GoodsContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import BasketContainer from "./components/Basket/BasketContainer";
+import {Route, Switch} from 'react-router-dom';
+import Order from './pages/Order/Order';
+import {makeStyles} from "@material-ui/styles";
+import Goods from "./pages/Goods/Goods";
+import Basket from "./pages/Basket/Basket";
+import Header from "./components/Header/Header";
 
-const useStyles = makeStyles({
-  appContent: {
-    paddingTop: "20px",
-    paddingLeft: "40px",
-    paddingRight: "40px",
-  }
-});
+const useStyles = makeStyles(theme => ({
+    appContent: {
+        padding: theme.spacing(2.4, 5, 0, 5),
+    }
+}));
 
 function App() {
-
-  const classes = useStyles();
-  return (
-    <React.Fragment>
-      <HeaderContainer/>
-      <div className={classes.appContent}>
-        <Switch>
-          <Route exact path='/' render={(props) => <GoodsContainer {...props} />} />
-          <Route path='/basket' render={(props) => <BasketContainer {...props} />} />
-          <Route path='/order' render={(props) => <Order {...props} />} />
-          <Route path='*' render={() => <div>404 Not Found</div>} />
-        </Switch>
-      </div>
-    </React.Fragment>
-  );
+    const classes = useStyles();
+    return (
+        <React.Fragment>
+            <Header/>
+            <div className={classes.appContent}>
+                <Switch>
+                    <Route exact path='/' render={() => <Goods/>}/>
+                    <Route path='/basket' render={() => <Basket/>}/>
+                    <Route path='/order' render={() => <Order/>}/>
+                    <Route path='*' render={ () => <div>404 Not Found</div>}/>
+                </Switch>
+            </div>
+        </React.Fragment>
+    );
 }
 
 export default App;

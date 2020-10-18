@@ -2,7 +2,6 @@ let initialState = {
 
 }
 
-
 const goodsReducer = (state = initialState, action) => {
 
     switch (action.type) {

@@ -1,25 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {Router} from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import {BrowserRouter} from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import {ThemeProvider} from '@material-ui/core/styles';
-import theme from './theme'
+import theme from './config/theme'
 import {Provider} from "react-redux";
 import store from "./redux/store";
 
-const history = createBrowserHistory();
-
 ReactDOM.render(
     <React.StrictMode>
-        <Router history={history}>
+        <BrowserRouter>
             <Provider store={store}>
                 <ThemeProvider theme={theme}>
                     <App/>
                 </ThemeProvider>
             </Provider>
-        </Router>
+        </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

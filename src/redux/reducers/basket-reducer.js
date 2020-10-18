@@ -1,35 +1,12 @@
-import mockData from "../mockData";
+import mockData from "../../mockData";
+import {updateObjectInArray} from "../../utils/object-helpers";
 
 const ADD_GOOD_TO_BASKET = "basket/ADD_GOOD_TO_BASKET"
 const DELETE_GOOD_FROM_BASKET = "basket/DELETE_GOOD_FROM_BASKET"
-const GOOD_COUNT_ADD = "basket/GOOD_COUNT_ADD"
-const GOOD_COUNT_LOW = "basket/GOOD_COUNT_LOW"
-
+const UPDATE_AMOUNT_GOOD_BASKET = "basket/UPDATE_AMOUNT_GOOD_BASKET"
 
 let initialState = {
-    goodsInBasket: [{
-        title: "Keurig K-Duo",
-        price: "$149.99",
-        description:
-            "Use both ground coffee and k-cup pods. Multiple brew sizes: brew an 8, 10, or 12-cup carafe and an 237, 296, or 355ml (8, 10, or 12 oz. ) cup ",
-        avatarUrl:
-            "https://upload.wikimedia.org/wikipedia/commons/e/e0/Keurig_Logo.png",
-        imageUrl:
-            "https://images-na.ssl-images-amazon.com/images/I/61-KUPluVYL._AC_SL1500_.jpg",
-        id: 1
-    },
-        {
-            title: "KRUPS Electric",
-            price: "$19.99",
-            description:
-                "Large grinding capacity yields ground coffee for up to 12 cups of coffee",
-            avatarUrl:
-                "https://images-na.ssl-images-amazon.com/images/I/81CbxNLCHCL._AC_SL1500_.jpg",
-            imageUrl:
-                "https://images-na.ssl-images-amazon.com/images/I/71FhMLBP9XL._AC_SL1500_.jpg",
-            id: 2
-        }],
-    goodCount: 1
+    goodsInBasket: []
 }
 
 const basketReducer = (state = initialState, action) => {
@@ -47,15 +24,12 @@ const basketReducer = (state = initialState, action) => {
                 ...state,
                 goodsInBasket: [...state.goodsInBasket].filter(good => good.id !== id)
             }
-        case GOOD_COUNT_ADD:
+        case UPDATE_AMOUNT_GOOD_BASKET:
+
             return {
                 ...state,
-                goodCount: state.goodCount + 1
-            }
-        case GOOD_COUNT_LOW:
-            return {
-                ...state,
-                goodCount: state.goodCount - 1
+                goodsInBasket: updateObjectInArray([...state.goodsInBasket],
+                    action.id, 'id', {amount: action.value})
             }
         default:
             return state;
@@ -68,19 +42,8 @@ export const addGoodToBasketActionCreator = (good) => {
 export const deleteGoodFromBasketActionCreator = (id) => {
     return {type: DELETE_GOOD_FROM_BASKET, id}
 }
-export const addGoodCountActionCreator = () => {
-    return {type: GOOD_COUNT_ADD}
-}
-
-export const lowGoodCountActionCreator = () => {
-    return {type: GOOD_COUNT_LOW}
-}
-
-export const addGoodCount = (id) => (dispatch) => {
-    dispatch(addGoodCountActionCreator());
-}
-export const lowGoodCount = (id) => (dispatch) => {
-    dispatch(lowGoodCountActionCreator());
+export const updateAmountGoodActionCreator = (id, value) => {
+    return {type: UPDATE_AMOUNT_GOOD_BASKET, id, value}
 }
 
 
@@ -97,6 +60,10 @@ export const addGoodToBasket = (id) => (dispatch, getState) => {
 export const deleteGoodFromBasket = (id) => (dispatch, getState) => {
     let goodsInBasket = getState().basket.goodsInBasket;
     goodsInBasket.find(item => item.id === id && dispatch(deleteGoodFromBasketActionCreator(id)))
+}
+
+export const updateAmountGoodInBasket = (id, value) => (dispatch) => {
+    dispatch(updateAmountGoodActionCreator(id,value))
 }
 
 export default basketReducer;
