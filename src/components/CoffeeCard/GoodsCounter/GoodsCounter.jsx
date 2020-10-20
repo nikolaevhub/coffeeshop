@@ -5,7 +5,7 @@ import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRoun
 import Input from "@material-ui/core/Input";
 import {makeStyles} from '@material-ui/core/styles';
 import {useDispatch} from "react-redux";
-import * as BasketActions from "../../redux/reducers/basket-reducer";
+import * as BasketActions from "../../../redux/reducers/basket-reducer";
 
 const useStyles = makeStyles({
     counterInput: {

@@ -2,7 +2,7 @@ import React, {useCallback} from "react";
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import Route from "../../config/routers";
 import {useHistory} from "react-router-dom";
-import GoodsCounter from "../GoodsCounter/GoodsCounter";
+import GoodsCounter from "./GoodsCounter/GoodsCounter";
 import {useDispatch} from "react-redux";
 import * as BasketActions from "../../redux/reducers/basket-reducer";
 import {

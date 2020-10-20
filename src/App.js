@@ -4,7 +4,7 @@ import Order from './pages/Order/Order';
 import {makeStyles} from "@material-ui/styles";
 import Goods from "./pages/Goods/Goods";
 import Basket from "./pages/Basket/Basket";
-import Header from "./components/Header/Header";
+import Header from "./components/common/Header/Header";
 
 const useStyles = makeStyles(theme => ({
     appContent: {
