@@ -1,11 +1,12 @@
 import React from 'react';
-import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartRoundedIcon from "@material-ui/icons/ShoppingCartRounded";
 import {makeStyles} from "@material-ui/styles";
-import {NavLink, useHistory} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Router from "../../../config/routers";
 import {useSelector} from "react-redux";
+import Link from "@material-ui/core/Link";
 
 
 const useStyles = makeStyles({
@@ -25,19 +26,19 @@ const Header = () => {
     const basket = useSelector((state) => state.basket)
     const badgeContent = basket.goodsInBasket.length;
     const classes = useStyles();
-    const history = useHistory();
-    const onBasketClick = () => history.push(Router.basket);
+
 
     return <AppBar position="static" color="primary">
         <Toolbar className={classes.toolBarContainer}>
-            <Typography variant="h6" >
+            <Typography variant="h6">
                 <NavLink to={Router.goods} className={classes.headerTitle}>CoffeeStore</NavLink>
             </Typography>
-            <IconButton onClick={onBasketClick}>
+            <Link href={Router.basket}>
                 <Badge badgeContent={badgeContent <= 9 ? badgeContent : '9+'} color="secondary">
                     <ShoppingCartRoundedIcon className={classes.basketIcon}/>
                 </Badge>
-            </IconButton>
+            </Link>
+
         </Toolbar>
     </AppBar>
 }

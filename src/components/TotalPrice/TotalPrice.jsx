@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useSelector} from "react-redux";
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -16,30 +16,21 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-    },
+    }
 }));
 
 
 const TotalPrice = () => {
     const goodsInBasket = useSelector((state) => state.basket.goodsInBasket)
+
     const classes = useStyles();
     const history = useHistory();
 
-    const [disabledOrderButton, setDisabledOrderButton] = useState(true);
-
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    let sum = goodsInBasket.length > 0
-        ? goodsInBasket.map(good => good.amount * good.price).reduce(reducer).toFixed(2)
-        : 0
-    let totalGoods = goodsInBasket.length > 0
-        ? goodsInBasket.map(good => good.amount).reduce(reducer)
-        : 0
+    let sum = goodsInBasket.map(good => good.amount * good.price).reduce(reducer, 0).toFixed(2);
+    let totalGoods = goodsInBasket.map(good => good.amount).reduce(reducer, 0);
 
     const onOrderBtn = () => history.push(Router.order);
-
-    useEffect(() => {
-        sum > 0 && setDisabledOrderButton(false);
-    }, [setDisabledOrderButton])
 
 
     return <div className={classes.root}>
@@ -49,7 +40,8 @@ const TotalPrice = () => {
                     <Typography variant="h6" component="h6">
                         Total goods: {totalGoods} on the sum: {sum}
                     </Typography>
-                    <Button disabled={disabledOrderButton} variant="contained" color="secondary" onClick={onOrderBtn}>
+                    <Button disabled={goodsInBasket.length === 0} variant="contained" color="secondary"
+                            onClick={onOrderBtn}>
                         Order
                     </Button>
                 </Paper>

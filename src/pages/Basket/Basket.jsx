@@ -8,8 +8,8 @@ const Basket = () => {
     const {goodsInBasket} = basket
 
     return (<>
-        <GridOfCards cards={goodsInBasket}/>
-        <TotalPrice/>
+            <GridOfCards cards={goodsInBasket}/>
+            <TotalPrice/>
         </>
     );
 };

@@ -1,14 +1,23 @@
-import React from 'react';
-import Paper from "@material-ui/core/Paper";
-import FieldLevelValidationForm from "../../components/OrderForm";
+import React, {useCallback, useState} from 'react';
+import OrderForm from "../../components/OrderForm/OrderForm";
+import Popup from "../../components/Popup/Popup";
+import Route from "../../config/routers";
+import {useHistory} from "react-router-dom";
 
-const Order = (props) => {
+const Order = () => {
+    const [openPopup, setOpenPopup] = useState(false);
+    const history = useHistory()
+
+    const handleClose = useCallback(() => {
+        setOpenPopup(false);
+        history.push(Route.goods)
+    }, [setOpenPopup])
 
     return (
-        // <div>This is a Order page</div>
-        <Paper>
-            <FieldLevelValidationForm/>
-        </Paper>
+        <>
+            <OrderForm setOpenPopup={setOpenPopup}/>
+            <Popup openPopup={openPopup} handleClose={handleClose}/>
+        </>
     )
 }
 

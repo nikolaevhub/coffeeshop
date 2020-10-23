@@ -1,14 +1,22 @@
 import {applyMiddleware, compose, createStore} from "redux";
 import thunk from "redux-thunk";
 import reducers from "./reducers";
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const persistedState = localStorage.getItem('reduxState') ? JSON.parse(localStorage.getItem('reduxState')) : {}
 
-let store = createStore(reducers,composeEnhancers(applyMiddleware(thunk)));
 
-// store.subscribe(()=>{
-//     localStorage.setItem('reduxState', JSON.stringify(store.getState()))
-// })
+const persistConfig = {
+    key: 'root',
+    storage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducers)
+
+let store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
+export let persistor = persistStore(store);
+
+
 
 export default store;

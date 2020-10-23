@@ -4,6 +4,7 @@ import {updateObjectInArray} from "../../utils/object-helpers";
 const ADD_GOOD_TO_BASKET = "basket/ADD_GOOD_TO_BASKET"
 const DELETE_GOOD_FROM_BASKET = "basket/DELETE_GOOD_FROM_BASKET"
 const UPDATE_AMOUNT_GOOD_BASKET = "basket/UPDATE_AMOUNT_GOOD_BASKET"
+const CLEAR_BASKET = "basket/CLEAR_BASKET"
 
 let initialState = {
     goodsInBasket: []
@@ -31,6 +32,11 @@ const basketReducer = (state = initialState, action) => {
                 goodsInBasket: updateObjectInArray([...state.goodsInBasket],
                     action.id, 'id', {amount: action.value})
             }
+        case CLEAR_BASKET:
+            return {
+                ...state,
+                goodsInBasket: []
+            }
         default:
             return state;
     }
@@ -44,6 +50,9 @@ export const deleteGoodFromBasketActionCreator = (id) => {
 }
 export const updateAmountGoodActionCreator = (id, value) => {
     return {type: UPDATE_AMOUNT_GOOD_BASKET, id, value}
+}
+export const clearBasketActionCreator = () => {
+    return {type: CLEAR_BASKET}
 }
 
 
@@ -64,6 +73,9 @@ export const deleteGoodFromBasket = (id) => (dispatch, getState) => {
 
 export const updateAmountGoodInBasket = (id, value) => (dispatch) => {
     dispatch(updateAmountGoodActionCreator(id,value))
+}
+export const clearBasket = () => (dispatch) => {
+    dispatch(clearBasketActionCreator())
 }
 
 export default basketReducer;

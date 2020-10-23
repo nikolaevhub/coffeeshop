@@ -1,7 +1,7 @@
 import React, {useCallback} from "react";
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import Route from "../../config/routers";
-import {useHistory} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import GoodsCounter from "./GoodsCounter/GoodsCounter";
 import {useDispatch} from "react-redux";
 import * as BasketActions from "../../redux/reducers/basket-reducer";
@@ -10,6 +10,7 @@ import {
     CardContent, Typography, Button,
     CardHeader, CardMedia, Grid, IconButton
 } from "@material-ui/core"
+
 
 const useStyles = makeStyles((theme)=> ({
     cardMedia: {
@@ -35,14 +36,13 @@ const CoffeeCard = ({cardData}) => {
 
     const dispatch = useDispatch();
 
-    const onAddGoodToBasket = useCallback((id) => dispatch(BasketActions.addGoodToBasket(id)),
-        [dispatch])
-    const onDeleteGoodFromBasket = useCallback((id) => dispatch(BasketActions.deleteGoodFromBasket(id)),
-        [dispatch])
+    const onAddGoodToBasket = useCallback(() => dispatch(BasketActions.addGoodToBasket(id)),
+        [dispatch, id])
 
-    const history = useHistory();
-    const {location} = history;
-    const {pathname} = location;
+    const onDeleteGoodFromBasket = useCallback(() => dispatch(BasketActions.deleteGoodFromBasket(id)),
+        [dispatch,id])
+
+    const {pathname} = useLocation();
 
     return (
         <Grid item key={id} xs={12} sm={6} md={3} lg>
@@ -51,7 +51,7 @@ const CoffeeCard = ({cardData}) => {
                             subheader={price}
                             action={(pathname === Route.basket) && <IconButton aria-label="settings"
                                                                                size="small"
-                                                                               onClick={() => onDeleteGoodFromBasket(id)}
+                                                                               onClick={onDeleteGoodFromBasket}
                             >
                                 <CloseRoundedIcon/>
                             </IconButton>
@@ -71,7 +71,7 @@ const CoffeeCard = ({cardData}) => {
                         : <Button size="small"
                                   color="primary"
                                   variant="contained"
-                                  onClick={() => onAddGoodToBasket(id)}>Add to basket</Button>}
+                                  onClick={onAddGoodToBasket}>Add to basket</Button>}
                 </CardActions>
             </Card>
         </Grid>

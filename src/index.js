@@ -6,18 +6,20 @@ import * as serviceWorker from './serviceWorker';
 import {ThemeProvider} from '@material-ui/core/styles';
 import theme from './config/theme'
 import {Provider} from "react-redux";
-import store from "./redux/store";
+import store, {persistor} from "./redux/store";
+import { PersistGate } from 'redux-persist/integration/react'
 
 ReactDOM.render(
-    <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider theme={theme}>
                     <App/>
                 </ThemeProvider>
+                    </PersistGate>
             </Provider>
         </BrowserRouter>
-    </React.StrictMode>,
+,
     document.getElementById('root')
 );
 
