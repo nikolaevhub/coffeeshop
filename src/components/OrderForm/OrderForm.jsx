@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import {useDispatch} from "react-redux";
 import {clearBasket} from "../../redux/reducers/basket-reducer";
+import {useTranslation} from "react-i18next";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +46,7 @@ const renderTextField = ({label, input, meta: {touched, invalid, error}, ...cust
 const OrderForm = ({handleSubmit, valid, reset, setOpenPopup}) => {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const [t, i18n] = useTranslation();
     const handleOpen = useCallback(() => {
         setOpenPopup(true);
         dispatch(clearBasket());
@@ -54,15 +56,15 @@ const OrderForm = ({handleSubmit, valid, reset, setOpenPopup}) => {
     return (
         <div className={classes.container}>
             <Paper className={classes.paper}>
-                <Typography variant={"h5"} gutterBottom={true}>Order form</Typography>
+                <Typography variant={"h5"} gutterBottom={true}>{t("OrderForm")}</Typography>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
                         <form onSubmit={handleSubmit}>
                             <div>
-                                <Field fullWidth name="firstName" component={renderTextField} label="First Name"/>
+                                <Field fullWidth name="firstName" component={renderTextField} label={t("FirstName")}/>
                             </div>
                             <div>
-                                <Field fullWidth name="phone" component={renderTextField} label="Phone"
+                                <Field fullWidth name="phone" component={renderTextField} label={t("Phone")}
                                        normalize={normalizePhone}/>
                             </div>
                             <div>
@@ -72,7 +74,7 @@ const OrderForm = ({handleSubmit, valid, reset, setOpenPopup}) => {
                                 {/*Вместо onSubmit использовал onClick*/}
                                 <Button variant="contained" color="secondary" className={classes.submitBtn}
                                         disabled={!valid} onClick={handleOpen}>
-                                    Submit
+                                    {t("Submit")}
                                 </Button>
                             </div>
                         </form>

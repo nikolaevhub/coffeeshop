@@ -3,7 +3,7 @@ export default [
     title: "Keurig K-Duo",
     price: "149.99",
     description:
-      "Use both ground coffee and k-cup pods. Multiple brew sizes: brew an 8, 10, or 12-cup carafe and an 237, 296, or 355ml (8, 10, or 12 oz. ) cup ",
+      "EN both ground coffee and k-cup pods. Multiple brew sizes: brew an 8, 10, or 12-cup carafe and an 237, 296, or 355ml (8, 10, or 12 oz. ) cup ",
     avatarUrl:
       "https://upload.wikimedia.org/wikipedia/commons/e/e0/Keurig_Logo.png",
     imageUrl:

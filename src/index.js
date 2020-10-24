@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
@@ -7,20 +7,21 @@ import {ThemeProvider} from '@material-ui/core/styles';
 import theme from './config/theme'
 import {Provider} from "react-redux";
 import store, {persistor} from "./redux/store";
-import { PersistGate } from 'redux-persist/integration/react'
+import {PersistGate} from 'redux-persist/integration/react'
+import './i18n';
 
 ReactDOM.render(
-        <BrowserRouter>
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
+    <BrowserRouter>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider theme={theme}>
-                    <App/>
+                        <App/>
                 </ThemeProvider>
-                    </PersistGate>
-            </Provider>
-        </BrowserRouter>
+            </PersistGate>
+        </Provider>
+    </BrowserRouter>
 ,
-    document.getElementById('root')
+document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change

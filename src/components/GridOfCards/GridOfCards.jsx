@@ -4,6 +4,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import {makeStyles} from "@material-ui/core/styles";
 import CoffeeCard from "../CoffeeCard/CoffeeCard";
 
+
 const useStyles = makeStyles(theme => ({
         gridItemsContainer: {
             [theme.breakpoints.up('lg')]: {
@@ -14,15 +15,16 @@ const useStyles = makeStyles(theme => ({
     })
 );
 
+
 const GridOfCards = ({cards}) => {
     const classes = useStyles();
+
+    if (!cards) {
+        return <CircularProgress color="secondary"/>
+    }
     return (
-        <Grid container spacing={3} className={classes.gridItemsContainer}  >
-            {cards ? (
-                cards.map(card => <CoffeeCard key={card.id} cardData={card}/>)
-            ) : (
-                <CircularProgress color="secondary"/>
-            )}
+        <Grid container spacing={3} className={classes.gridItemsContainer}>
+            {cards.map(card => <CoffeeCard key={card.id} cardData={card}/>)}
         </Grid>
     )
 };

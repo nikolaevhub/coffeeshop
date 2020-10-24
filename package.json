@@ -10,20 +10,19 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
-    "classnames": "^2.2.6",
-    "formik": "^2.2.0",
-    "formik-material-ui": "^3.0.0",
-    "i18n": "^0.13.2",
+    "i18next": "^19.8.2",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-http-backend": "^1.0.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-i18next": "^11.7.3",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5",
     "redux-form": "^8.3.6",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,7 +45,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "typescript": "^4.0.3"
-  }
+  "devDependencies": {}
 }

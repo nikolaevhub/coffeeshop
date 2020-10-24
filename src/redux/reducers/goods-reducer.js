@@ -1,9 +1,9 @@
-import mockData from "../../mockData";
 const SET_GOODS = 'goods/SET_GOODS';
-const SET_CURRENT_PAGE = 'goods/SET_CURRENT_PAGE';
+const SET_LANG = 'goods/SET_LANG';
 
 let initialState = {
-    goodItems: []
+    goodItems: [],
+    lang: ''
 }
 
 const goodsReducer = (state = initialState, action) => {
@@ -14,10 +14,10 @@ const goodsReducer = (state = initialState, action) => {
                 ...state,
                 goodItems: action.goods
             }
-        case SET_CURRENT_PAGE:
+        case SET_LANG:
             return {
                 ...state,
-                currentPage: action.currentPage
+                lang: action.lang
             }
         default:
             return state;
@@ -27,9 +27,16 @@ const goodsReducer = (state = initialState, action) => {
 export const setGoods = (goods) => {
     return {type: SET_GOODS, goods}
 }
+export const setLang = (lang) => {
+    return {type: SET_LANG, lang}
+}
 
 export const setGoodsThunkCreator = (goods) => (dispatch) => {
     dispatch(setGoods(goods))
+}
+
+export const setLangThunkCreator = (lang) => (dispatch) => {
+    dispatch(setLang(lang))
 }
 
 export default goodsReducer;

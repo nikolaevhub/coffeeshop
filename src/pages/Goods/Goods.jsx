@@ -1,30 +1,32 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useState} from "react";
 import GridOfCards from "../../components/GridOfCards/GridOfCards";
 import {useDispatch, useSelector} from "react-redux";
 import {setGoodsThunkCreator} from "../../redux/reducers/goods-reducer";
 import Pagination from "@material-ui/lab/Pagination";
-import mockData from "../../mockData";
+import mockDataRu from "../../mockDataRu";
+import mockDataEn from "../../mockDataEn";
 import {makeStyles} from "@material-ui/core";
 
 const CURRENT_PAGE = 1;
 const PORTION_SIZE = 5;
 const PAGE_SIZE = 5;
 
-const useStyles = makeStyles((theme)=> ({
+const useStyles = makeStyles((theme) => ({
     paginator: {
-    display: "flex",
-    justifyContent: "center",
-    marginTop: "25px"
-}
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "25px"
+    }
 }));
 
 
 const Goods = () => {
     const classes = useStyles();
     const dispatch = useDispatch()
-    let goodItems = useSelector((state) => state.goods.goodItems)
-
+    let {goodItems, lang} = useSelector((state) => state.goods)
     let [totalItemsCount, setTotalItemsCount] = useState(0)
+
+    const mockData = useMemo(() => (lang === 'en') ? mockDataEn : mockDataRu, [lang])
 
     let pagesCount = Math.ceil(totalItemsCount / PAGE_SIZE)
 

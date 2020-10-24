@@ -1,4 +1,3 @@
-import mockData from "../../mockData";
 import {updateObjectInArray} from "../../utils/object-helpers";
 
 const ADD_GOOD_TO_BASKET = "basket/ADD_GOOD_TO_BASKET"
@@ -56,23 +55,16 @@ export const clearBasketActionCreator = () => {
 }
 
 
-export const addGoodToBasket = (id) => (dispatch, getState) => {
-    const mockDataGood = mockData.find(mockDataObject => mockDataObject.id === id)
-    const goodsInBasket = getState().basket.goodsInBasket;
-    const goodsInBasketIds = goodsInBasket.map(goodInBasket => goodInBasket.id)
-    const isGoodInBasket = goodsInBasketIds.includes(id)
+export const addGoodToBasket = (mockDataGood) => (dispatch) => {
+    dispatch(addGoodToBasketActionCreator(mockDataGood))
 
-    if (!isGoodInBasket) {
-        dispatch(addGoodToBasketActionCreator(mockDataGood))
-    }
 }
 export const deleteGoodFromBasket = (id) => (dispatch, getState) => {
-    let goodsInBasket = getState().basket.goodsInBasket;
-    goodsInBasket.find(item => item.id === id && dispatch(deleteGoodFromBasketActionCreator(id)))
+    dispatch(deleteGoodFromBasketActionCreator(id))
 }
 
 export const updateAmountGoodInBasket = (id, value) => (dispatch) => {
-    dispatch(updateAmountGoodActionCreator(id,value))
+    dispatch(updateAmountGoodActionCreator(id, value))
 }
 export const clearBasket = () => (dispatch) => {
     dispatch(clearBasketActionCreator())

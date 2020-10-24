@@ -10,8 +10,8 @@ const Order = () => {
 
     const handleClose = useCallback(() => {
         setOpenPopup(false);
-        history.push(Route.goods)
-    }, [setOpenPopup])
+        history.push(Route.goods);
+    }, [setOpenPopup,history])
 
     return (
         <>
