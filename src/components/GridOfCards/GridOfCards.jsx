@@ -18,7 +18,6 @@ const useStyles = makeStyles(theme => ({
 
 const GridOfCards = ({cards}) => {
     const classes = useStyles();
-
     if (!cards) {
         return <CircularProgress color="secondary"/>
     }

@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-
 const TotalPrice = () => {
     const goodsInBasket = useSelector((state) => state.basket.goodsInBasket)
 
@@ -31,14 +30,12 @@ const TotalPrice = () => {
     const [t, i18n] = useTranslation();
     let lang = i18n.language || window.localStorage.i18nextLng;
 
-
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     let sum = goodsInBasket.map(good => good.amount * good.price).reduce(reducer, 0).toFixed(2);
     let totalGoods = goodsInBasket.map(good => good.amount).reduce(reducer, 0);
     let rubPrice = (sum * EXCHANGE_RATE).toFixed(2) + " ₽"
 
     const onOrderBtn = () => history.push(Router.order);
-
 
     return <div className={classes.root}>
         <Grid container spacing={3}>

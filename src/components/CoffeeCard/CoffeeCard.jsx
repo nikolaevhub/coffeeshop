@@ -43,8 +43,6 @@ const CoffeeCard = ({cardData}) => {
     let lang = i18n.language || window.localStorage.i18nextLng;
     let rubPrice = (price * EXCHANGE_RATE) .toFixed(2) + " ₽"
 
-
-
     const onAddGoodToBasket = useCallback(() => {
             const mockDataGood = mockData.find(mockDataObject => mockDataObject.id === id)
             const goodsInBasketIds = goodsInBasket.map(goodInBasket => goodInBasket.id)
