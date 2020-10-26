@@ -1,4 +1,5 @@
 http://g.recordit.co/hJLDxLcL1y.gif
+<img src="http://g.recordit.co/hJLDxLcL1y.gif" alt="Gif"/>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
