@@ -1,5 +1,5 @@
 
-<img src="http://g.recordit.co/xiO3PYL1fF.gif" alt="gif"/>
+<img src="http://g.recordit.co/zDdXIBhGYd.gif" alt="gif"/>
 
 Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
