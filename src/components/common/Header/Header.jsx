@@ -6,11 +6,12 @@ import {makeStyles} from "@material-ui/styles";
 import {NavLink} from "react-router-dom";
 import Router from "../../../config/routers";
 import {useDispatch, useSelector} from "react-redux";
-import Link from "@material-ui/core/Link";
 import {useTranslation} from 'react-i18next';
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Box from "@material-ui/core/Box";
 import {setLangThunkCreator} from "../../../redux/reducers/goods-reducer";
+import IconButton from "@material-ui/core/IconButton";
+import {useHistory} from "react-router-dom";
 
 
 const useStyles = makeStyles({
@@ -35,12 +36,15 @@ const Header = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const [t, i18n] = useTranslation();
+    const history = useHistory();
 
 
     const handleClick = useCallback((lang) => () => {
         i18n.changeLanguage(lang);
         dispatch(setLangThunkCreator(lang))
     }, [dispatch])
+
+    const onBasketClick = useCallback(() => history.push(Router.basket), [history]);
 
 
     return <AppBar position="static" color="primary">
@@ -53,11 +57,11 @@ const Header = () => {
                     <Button className={classes.languageButton} onClick={handleClick('en')}>EN</Button>
                     <Button className={classes.languageButton} onClick={handleClick('ru')}>RU</Button>
                 </ButtonGroup>
-                <Link href={Router.basket}>
+                <IconButton onClick={onBasketClick}>
                     <Badge badgeContent={badgeContent <= 9 ? badgeContent : '9+'} color="secondary">
                         <ShoppingCartRoundedIcon className={classes.basketIcon}/>
                     </Badge>
-                </Link>
+                </IconButton>
             </Box>
 
         </Toolbar>
