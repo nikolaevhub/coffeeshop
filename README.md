@@ -1,7 +1,14 @@
-http://g.recordit.co/hJLDxLcL1y.gif
-<img src="http://g.recordit.co/hJLDxLcL1y.gif" alt="Gif"/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="https://recordit.co/xiO3PYL1fF" alt="gif"/>
+
+Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+The project uses React hooks, functional components, Material UI and internationalization based on i18next for React
+To analyze the code, use the module eslint-config-react-app.
+
+After clonning from repository you need install dependencies
+
+### `yarn install`
 
 ## Available Scripts
 
