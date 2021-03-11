@@ -1,6 +1,3 @@
-
-<img src="http://g.recordit.co/zDdXIBhGYd.gif" alt="gif"/>
-
 Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 The project uses React hooks, functional components, Material UI and internationalization based on i18next for React
